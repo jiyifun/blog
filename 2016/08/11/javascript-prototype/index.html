@@ -68,7 +68,7 @@
 <link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随笔," />
+  <meta name="keywords" content="笔记," />
 
 
 
@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="###hello world
-第一次在 hexo 上写东西。">
+<meta name="description" content="###什么是原型原型是一个对象，其他对象可以通过它实现属性继承。所有的对象都拥有原型，所有的对象都可以成为原型。获得原型的方法：12345678910111213var a = &amp;#123;&amp;#125;;  //Firefox 3.6 and Chrome 5  Object.getPrototypeOf(a); //[object Object]    //Firefox 3.6, Chrome">
 <meta property="og:type" content="article">
-<meta property="og:title" content="first post on blog">
-<meta property="og:url" content="https://jiyifun.github.io/2016/08/10/first-post-on-blog/index.html">
+<meta property="og:title" content="JavaScript原型学习笔记">
+<meta property="og:url" content="https://jiyifun.github.io/2016/08/11/javascript-prototype/index.html">
 <meta property="og:site_name" content="几一的博客">
-<meta property="og:description" content="###hello world
-第一次在 hexo 上写东西。">
-<meta property="og:updated_time" content="2016-08-10T01:32:51.000Z">
+<meta property="og:description" content="###什么是原型原型是一个对象，其他对象可以通过它实现属性继承。所有的对象都拥有原型，所有的对象都可以成为原型。获得原型的方法：12345678910111213var a = &amp;#123;&amp;#125;;  //Firefox 3.6 and Chrome 5  Object.getPrototypeOf(a); //[object Object]    //Firefox 3.6, Chrome">
+<meta property="og:updated_time" content="2016-08-11T01:10:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="first post on blog">
-<meta name="twitter:description" content="###hello world
-第一次在 hexo 上写东西。">
+<meta name="twitter:title" content="JavaScript原型学习笔记">
+<meta name="twitter:description" content="###什么是原型原型是一个对象，其他对象可以通过它实现属性继承。所有的对象都拥有原型，所有的对象都可以成为原型。获得原型的方法：12345678910111213var a = &amp;#123;&amp;#125;;  //Firefox 3.6 and Chrome 5  Object.getPrototypeOf(a); //[object Object]    //Firefox 3.6, Chrome">
 
 
 
@@ -117,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="https://jiyifun.github.io/2016/08/10/first-post-on-blog/"/>
+  <link rel="canonical" href="https://jiyifun.github.io/2016/08/11/javascript-prototype/"/>
 
-  <title> first post on blog | 几一的博客 </title>
+  <title> JavaScript原型学习笔记 | 几一的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +246,7 @@
             
             
               
-                first post on blog
+                JavaScript原型学习笔记
               
             
           </h1>
@@ -261,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T09:29:08+08:00" content="2016-08-10">
-              2016-08-10
+            <time itemprop="dateCreated" datetime="2016-08-11T09:09:44+08:00" content="2016-08-11">
+              2016-08-11
             </time>
           </span>
 
@@ -272,8 +269,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016/08/10/first-post-on-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/first-post-on-blog/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/08/11/javascript-prototype/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/javascript-prototype/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,8 +293,19 @@
       
 
       
-        <p>###hello world</p>
-<p>第一次在 hexo 上写东西。</p>
+        <p>###什么是原型<br>原型是一个对象，其他对象可以通过它实现属性继承。所有的对象都拥有原型，所有的对象都可以成为原型。<br>获得原型的方法：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="comment">&#123;&#125;</span>; </div><div class="line"></div><div class="line"> <span class="comment">//Firefox 3.6 and Chrome 5 </span></div><div class="line"></div><div class="line"> <span class="keyword">Object</span>.getPrototypeOf(a); <span class="comment">//[object Object]   </span></div><div class="line"></div><div class="line"> <span class="comment">//Firefox 3.6, Chrome 5 and Safari 4 </span></div><div class="line"></div><div class="line">a.__proto__; <span class="comment">//[object Object]   </span></div><div class="line"></div><div class="line"> <span class="comment">//all browsers </span></div><div class="line"></div><div class="line"> a.<span class="keyword">constructor</span>.prototype; <span class="comment">//[object Object]</span></div></pre></td></tr></table></figure></p>
+<p>注意，当你试图获取一个主数据类型的原型时，它被强制转化成了一个对象：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//(works in IE too, but only by accident) </span></div><div class="line"><span class="keyword">false</span>.__proto__ === <span class="keyword">Boolean</span>(<span class="keyword">false</span>).__proto__; <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>###原型与原型属性<br>原型例子：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/创建一个函数bvar b = function()&#123; var one; &#125;</span></div><div class="line">/<span class="regexp">/使用b创建一个对象实例cvar c = new b();</span></div><div class="line">/<span class="regexp">/查看b 和c的构造函数</span></div><div class="line">b.constructor;  /<span class="regexp">/ function Function() &#123; [native code]&#125;</span></div><div class="line">b.constructor==Function.constructor; /<span class="regexp">/true</span></div><div class="line">c.constructor; /<span class="regexp">/实例c的构造函数 即 b function()&#123; var one; &#125;c.constructor==b /</span><span class="regexp">/true</span></div><div class="line">/<span class="regexp">/b是一个函数，查看b的原型如下b.constructor.prototype /</span><span class="regexp">/ function ()&#123;&#125;b.__proto__  /</span><span class="regexp">/function ()&#123;&#125;</span></div><div class="line">/<span class="regexp">/b是一个函数，由于javascript没有在构造函数constructor和函数function之间做区分，所以函数像constructor一样，/</span><span class="regexp">/有一个原型属性，这和函数的原型(b.__proto__ 或者b.construtor.prototype)是不一样的b.prototype /</span><span class="regexp">/[object Object]   函数b的原型属性</span></div><div class="line">b.prototype==b.constructor.prototype /<span class="regexp">/fasleb.prototype==b.__proto__  /</span><span class="regexp">/falseb.__proto__==b.constructor.prototype /</span><span class="regexp">/true</span></div><div class="line">/<span class="regexp">/c是一个由b创建的对象实例，查看c的原型如下c.constructor.prototype /</span><span class="regexp">/[object Object] 这是对象的原型c.__proto__ /</span><span class="regexp">/[object Object] 这是对象的原型</span></div><div class="line">c.constructor.prototype==b.constructor.prototype;  /<span class="regexp">/false  c的原型和b的原型比较c.constructor.prototype==b.prototype;  /</span><span class="regexp">/true c的原型和b的原型属性比较</span></div><div class="line">/<span class="regexp">/为函数b的原型属性添加一个属性max</span></div><div class="line">b.prototype.max = 3</div><div class="line">/<span class="regexp">/实例c也有了一个属性max</span></div><div class="line">c.max  /<span class="regexp">/3</span></div></pre></td></tr></table></figure></p>
+<p>上面的例子中，对象实例c的原型和函数的b的原型属性是一样的，如果改变b的原型属性，则对象实例c的原型也会改变。</p>
+<p>理解一个函数的原型属性(function’s prototype property )其实和实际的原型(prototype)没有关系对我们来说至关重要。如实例对象a的原型(a.<strong>proto</strong>)是对函数A的原型属性(A.prototype)的引用：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>&#123;<span class="keyword">this</span>.name = name;&#125;</div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A(‘alpha’);a.name; <span class="comment">//’alpha’</span></div><div class="line">A.__proto__.max = <span class="number">19880716</span>;</div><div class="line">a.max   <span class="comment">//undefined</span></div></pre></td></tr></table></figure></p>
+<p>###原型可以做什么<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String.prototype.<span class="keyword">times</span> = function(<span class="keyword">count</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">count</span> &lt; <span class="number">1</span> ? <span class="string">''</span> : <span class="keyword">new</span> Array(<span class="keyword">count</span> + <span class="number">1</span>).<span class="keyword">join</span>(<span class="keyword">this</span>);</div><div class="line"> &#125; </div><div class="line"><span class="string">"hello!"</span>.<span class="keyword">times</span>(<span class="number">3</span>); <span class="comment">//"hello!hello!hello!"; </span></div><div class="line"><span class="string">"please..."</span>.<span class="keyword">times</span>(<span class="number">6</span>);<span class="comment">//"please...please...please...please...please...please..."</span></div></pre></td></tr></table></figure></p>
+<p>###注意事项<br>hasOwnProperty在for-in中一般用来检测是否为自身属性，也是JavaScript中唯一一个不会遍历原型链的方法。但是这方法有可能被覆盖改写：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    hasOwnProperty: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;,</div><div class="line">    bar: <span class="string">'Here be dragons'</span></div><div class="line">&#125;;</div><div class="line">foo.hasOwnProperty(<span class="string">'bar'</span>); <span class="comment">// 总是返回 false</span></div><div class="line"><span class="comment">// 使用&#123;&#125;对象的 hasOwnProperty，并将其上下为设置为foo</span></div><div class="line">&#123;&#125;.hasOwnProperty.call(foo, <span class="string">'bar'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<p>###参考资料</p>
+<ul>
+<li><a href="http://www.nowamagic.net/librarys/veda/detail/1648" target="_blank" rel="external">强大的原型和原型链</a></li>
+<li><a href="http://www.jb51.net/article/30750.htm" target="_blank" rel="external">js原型链原理看图说明</a></li>
+<li><a href="http://blog.jobbole.com/9648/" target="_blank" rel="external">理解JavaScript原型</a></li>
+</ul>
 
       
     </div>
@@ -320,7 +328,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/随笔/" rel="tag">#随笔</a>
+            <a href="/blog/tags/笔记/" rel="tag">#笔记</a>
           
         </div>
       
@@ -329,8 +337,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/08/10/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/blog/2016/08/11/javascript-scope/" rel="next" title="JavaScript作用域学习笔记">
+                <i class="fa fa-chevron-left"></i> JavaScript作用域学习笔记
               </a>
             
           </div>
@@ -367,8 +375,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/10/first-post-on-blog/"
-           data-title="first post on blog" data-url="https://jiyifun.github.io/blog/2016/08/10/first-post-on-blog/">
+      <div class="ds-thread" data-thread-key="2016/08/11/javascript-prototype/"
+           data-title="JavaScript原型学习笔记" data-url="https://jiyifun.github.io/blog/2016/08/11/javascript-prototype/">
       </div>
     
   </div>
@@ -413,7 +421,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -423,7 +431,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -248,8 +248,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2016/08/10/first-post-on-blog/" itemprop="url">
-                  first post on blog
+                <a class="post-title-link" href="/blog/2016/08/11/javascript-prototype/" itemprop="url">
+                  JavaScript原型学习笔记
                 </a>
               
             
@@ -262,8 +262,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T09:29:08+08:00" content="2016-08-10">
-              2016-08-10
+            <time itemprop="dateCreated" datetime="2016-08-11T09:09:44+08:00" content="2016-08-11">
+              2016-08-11
             </time>
           </span>
 
@@ -273,8 +273,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016/08/10/first-post-on-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/first-post-on-blog/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/08/11/javascript-prototype/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/javascript-prototype/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,8 +299,19 @@
       
         
           
-            <p>###hello world</p>
-<p>第一次在 hexo 上写东西。</p>
+            <p>###什么是原型<br>原型是一个对象，其他对象可以通过它实现属性继承。所有的对象都拥有原型，所有的对象都可以成为原型。<br>获得原型的方法：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="comment">&#123;&#125;</span>; </div><div class="line"></div><div class="line"> <span class="comment">//Firefox 3.6 and Chrome 5 </span></div><div class="line"></div><div class="line"> <span class="keyword">Object</span>.getPrototypeOf(a); <span class="comment">//[object Object]   </span></div><div class="line"></div><div class="line"> <span class="comment">//Firefox 3.6, Chrome 5 and Safari 4 </span></div><div class="line"></div><div class="line">a.__proto__; <span class="comment">//[object Object]   </span></div><div class="line"></div><div class="line"> <span class="comment">//all browsers </span></div><div class="line"></div><div class="line"> a.<span class="keyword">constructor</span>.prototype; <span class="comment">//[object Object]</span></div></pre></td></tr></table></figure></p>
+<p>注意，当你试图获取一个主数据类型的原型时，它被强制转化成了一个对象：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//(works in IE too, but only by accident) </span></div><div class="line"><span class="keyword">false</span>.__proto__ === <span class="keyword">Boolean</span>(<span class="keyword">false</span>).__proto__; <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>###原型与原型属性<br>原型例子：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/创建一个函数bvar b = function()&#123; var one; &#125;</span></div><div class="line">/<span class="regexp">/使用b创建一个对象实例cvar c = new b();</span></div><div class="line">/<span class="regexp">/查看b 和c的构造函数</span></div><div class="line">b.constructor;  /<span class="regexp">/ function Function() &#123; [native code]&#125;</span></div><div class="line">b.constructor==Function.constructor; /<span class="regexp">/true</span></div><div class="line">c.constructor; /<span class="regexp">/实例c的构造函数 即 b function()&#123; var one; &#125;c.constructor==b /</span><span class="regexp">/true</span></div><div class="line">/<span class="regexp">/b是一个函数，查看b的原型如下b.constructor.prototype /</span><span class="regexp">/ function ()&#123;&#125;b.__proto__  /</span><span class="regexp">/function ()&#123;&#125;</span></div><div class="line">/<span class="regexp">/b是一个函数，由于javascript没有在构造函数constructor和函数function之间做区分，所以函数像constructor一样，/</span><span class="regexp">/有一个原型属性，这和函数的原型(b.__proto__ 或者b.construtor.prototype)是不一样的b.prototype /</span><span class="regexp">/[object Object]   函数b的原型属性</span></div><div class="line">b.prototype==b.constructor.prototype /<span class="regexp">/fasleb.prototype==b.__proto__  /</span><span class="regexp">/falseb.__proto__==b.constructor.prototype /</span><span class="regexp">/true</span></div><div class="line">/<span class="regexp">/c是一个由b创建的对象实例，查看c的原型如下c.constructor.prototype /</span><span class="regexp">/[object Object] 这是对象的原型c.__proto__ /</span><span class="regexp">/[object Object] 这是对象的原型</span></div><div class="line">c.constructor.prototype==b.constructor.prototype;  /<span class="regexp">/false  c的原型和b的原型比较c.constructor.prototype==b.prototype;  /</span><span class="regexp">/true c的原型和b的原型属性比较</span></div><div class="line">/<span class="regexp">/为函数b的原型属性添加一个属性max</span></div><div class="line">b.prototype.max = 3</div><div class="line">/<span class="regexp">/实例c也有了一个属性max</span></div><div class="line">c.max  /<span class="regexp">/3</span></div></pre></td></tr></table></figure></p>
+<p>上面的例子中，对象实例c的原型和函数的b的原型属性是一样的，如果改变b的原型属性，则对象实例c的原型也会改变。</p>
+<p>理解一个函数的原型属性(function’s prototype property )其实和实际的原型(prototype)没有关系对我们来说至关重要。如实例对象a的原型(a.<strong>proto</strong>)是对函数A的原型属性(A.prototype)的引用：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>&#123;<span class="keyword">this</span>.name = name;&#125;</div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A(‘alpha’);a.name; <span class="comment">//’alpha’</span></div><div class="line">A.__proto__.max = <span class="number">19880716</span>;</div><div class="line">a.max   <span class="comment">//undefined</span></div></pre></td></tr></table></figure></p>
+<p>###原型可以做什么<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String.prototype.<span class="keyword">times</span> = function(<span class="keyword">count</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">count</span> &lt; <span class="number">1</span> ? <span class="string">''</span> : <span class="keyword">new</span> Array(<span class="keyword">count</span> + <span class="number">1</span>).<span class="keyword">join</span>(<span class="keyword">this</span>);</div><div class="line"> &#125; </div><div class="line"><span class="string">"hello!"</span>.<span class="keyword">times</span>(<span class="number">3</span>); <span class="comment">//"hello!hello!hello!"; </span></div><div class="line"><span class="string">"please..."</span>.<span class="keyword">times</span>(<span class="number">6</span>);<span class="comment">//"please...please...please...please...please...please..."</span></div></pre></td></tr></table></figure></p>
+<p>###注意事项<br>hasOwnProperty在for-in中一般用来检测是否为自身属性，也是JavaScript中唯一一个不会遍历原型链的方法。但是这方法有可能被覆盖改写：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    hasOwnProperty: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;,</div><div class="line">    bar: <span class="string">'Here be dragons'</span></div><div class="line">&#125;;</div><div class="line">foo.hasOwnProperty(<span class="string">'bar'</span>); <span class="comment">// 总是返回 false</span></div><div class="line"><span class="comment">// 使用&#123;&#125;对象的 hasOwnProperty，并将其上下为设置为foo</span></div><div class="line">&#123;&#125;.hasOwnProperty.call(foo, <span class="string">'bar'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<p>###参考资料</p>
+<ul>
+<li><a href="http://www.nowamagic.net/librarys/veda/detail/1648" target="_blank" rel="external">强大的原型和原型链</a></li>
+<li><a href="http://www.jb51.net/article/30750.htm" target="_blank" rel="external">js原型链原理看图说明</a></li>
+<li><a href="http://blog.jobbole.com/9648/" target="_blank" rel="external">理解JavaScript原型</a></li>
+</ul>
 
           
         
@@ -350,8 +361,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2016/08/10/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/blog/2016/08/11/javascript-scope/" itemprop="url">
+                  JavaScript作用域学习笔记
                 </a>
               
             
@@ -364,8 +375,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T09:21:08+08:00" content="2016-08-10">
-              2016-08-10
+            <time itemprop="dateCreated" datetime="2016-08-11T09:08:09+08:00" content="2016-08-11">
+              2016-08-11
             </time>
           </span>
 
@@ -375,8 +386,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2016/08/10/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/hello-world/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/08/11/javascript-scope/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/javascript-scope/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -401,15 +412,569 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>###作用域链</p>
+<p>作用域的原理: <code>”JavaScript中的函数运行在它们被定义的作用域里,而不是它们被执行的作用域里.”</code><br>所以函数的作用域其实是在它们被定义的那时就决定，和运行时没啥关系。看下面这个简单的例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">'world'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">echo</span><span class="params">()</span> </span>&#123;</div><div class="line">     alert(name); <span class="comment">//undefined</span></div><div class="line">     <span class="keyword">var</span> name = <span class="string">'hello'</span>; </div><div class="line">     alert(name); <span class="comment">//hello</span></div><div class="line">     alert(age); <span class="comment">//error</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">echo</span>();</div></pre></td></tr></table></figure></p>
+<p>这个例子其实等于下面这个，就是把局部变量定义提升了：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var <span class="built_in">name</span> = <span class="string">'world'</span>;</div><div class="line">function <span class="built_in">echo</span>() &#123;</div><div class="line">     var <span class="built_in">name</span>;</div><div class="line">     alert(<span class="built_in">name</span>); <span class="comment">//undefined</span></div><div class="line">     <span class="built_in">name</span> = <span class="string">'hello'</span>; </div><div class="line">     alert(<span class="built_in">name</span>); <span class="comment">//hello</span></div><div class="line">     alert(age); <span class="comment">//error</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">echo</span>();</div></pre></td></tr></table></figure></p>
+<p>这样就好理解了。</p>
+<p>###预编译<br>直接看例子吧：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">     alert(<span class="keyword">typeof</span> eve); <span class="comment">//结果:function</span></div><div class="line">     alert(<span class="keyword">typeof</span> walle); <span class="comment">//结果:undefined</span></div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">eve</span><span class="params">()</span> </span>&#123; <span class="comment">//函数定义式</span></div><div class="line">          alert(<span class="string">'hello world'</span>);</div><div class="line">     &#125;;</div><div class="line">     <span class="keyword">var</span> walle = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123; <span class="comment">//函数表达式</span></div><div class="line">     &#125;</div><div class="line">     alert(<span class="keyword">typeof</span> walle); <span class="comment">//结果:function</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在JavaScript里，在调用函数执行之前, 会首先创建一个活动对象, 然后搜寻这个函数中的局部变量定义(var),和函数定义(function), 将变量名和函数名都做为这个活动对象的同名属性, 对于局部变量定义,变量的值会在真正执行的时候才计算, 此时只是简单的赋为undefined.</p>
+<p>###改变(延长)作用域</p>
+<ol>
+<li>with语句，会将指定对象添加到作用域链中，这个对象将被推入作用域链的头部，这意味着函数的所有局部变量现在处于第二个作用域链对象中，因此访问代价更高了。实际使用时要避免使用with语句。</li>
+<li>try-catch语句的catch块，当try代码块中发生错误时，执行过程会跳转到catch语句，然后把异常对象推入一个可变对象并置于作用域的头部。在catch代码块内部，函数的所有局部变量将会被放在第二个作用域链对象中。以下例子可以优化代码性能：</li>
+</ol>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  doSomething();</div><div class="line">&#125; <span class="keyword">catch</span> (ex) &#123;</div><div class="line">  handleError(ex); //委托给处理器方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###参考资料</p>
+<ul>
+<li><a href="http://www.laruence.com/2009/05/28/863.html" target="_blank" rel="external">鸟哥：Javascript作用域原理</a></li>
+<li><a href="http://www.cnblogs.com/lhb25/archive/2011/09/06/javascript-scope-chain.html" target="_blank" rel="external">理解 JavaScript 作用域和作用域链</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/08/11/learn-js-the-good-parts-2/" itemprop="url">
+                  JavaScript语言精髓学习笔记2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T09:04:10+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/08/11/learn-js-the-good-parts-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/learn-js-the-good-parts-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###第五章 继承<br>js是一门基于原型的语言，这意味着对象直接从其他对象继承。</p>
+<ul>
+<li>伪类</li>
+<li>对象说明符</li>
+<li>原型</li>
+<li><p>函数化<br>一个函数化构造器的伪代码模板：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="function"><span class="keyword">constructor</span> = <span class="title">function</span> <span class="params">(spec, my)</span> <span class="comment">&#123;</span></span></div><div class="line">  var that,//其他的私有实例变量;</div><div class="line">  my = my || &#123;&#125;;</div><div class="line">  </div><div class="line">  <span class="comment">//把共享的变量和函数添加到my中</span></div><div class="line"></div><div class="line">  <span class="comment">//that = 一个新对象;</span></div><div class="line"></div><div class="line"> <span class="comment">// 添加给that的特权方法</span></div><div class="line"></div><div class="line">  return that;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>部件</p>
+</li>
+</ul>
+<p>###第六章 数组</p>
+<ul>
+<li>数组字面量</li>
+<li>长度<br>length属性的值是这个数组最大整数的属性名加1。它不一定等于数组里属性的个数。</li>
+<li>删除<br>delete运算符删除数组元素后，原位置会留下undefined。</li>
+<li>枚举</li>
+<li><p>判断一个对象是否数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> is_array = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.apply(value) === <span class="string">'[object Array]'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法</p>
+</li>
+<li>指定初始值<br>js数组不会预设值，也没有多维数组。</li>
+</ul>
+<p>###第七章 正则表达式</p>
+<ul>
+<li>标识<br>g: 全局<br>i：大小写不敏感<br>m：多行</li>
+<li>正则表达式因子<br>^会匹配文本的开始，$会匹配文本的结束，.会匹配除结束符外任何字符。</li>
+<li>正则表达式转义<br>\d 等同于[0-9]，\D则相反。<br>\s 代表空白，\S则相反。<br>\w 等同于[0-9A-Z_a-z]，\W则相反。<br>\1 是指向分组1所捕获的文本的引用。 \2、\3以此类推。</li>
+<li>正则表达式分组<br>1.捕获型<br>2.非捕获型，有个(?:前缀。<br>3.向前正向匹配（Positive lookahead）<br>4.向前负向匹配（Negative lookahead）</li>
+<li>正则表达式字符集<br>[!-\/:-@[-`{-~]</li>
+<li>正则表达式量词<br>?等同于{0, 1}，*等同于{0，}，+等同于{1，}。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/08/11/learn-js-to-good-part/" itemprop="url">
+                  JavaScript语言精髓学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T08:52:30+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/08/11/learn-js-to-good-part/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/learn-js-to-good-part/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###第二章 语法</p>
+<ul>
+<li><p>空白<br>多行注释的字符可能会出现在正则表达式里，不太安全，例如：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">\*</span></div><div class="line"><span class="keyword">var</span> rm_a = <span class="regexp">/a*/</span>.match(a);</div><div class="line">*/</div></pre></td></tr></table></figure>
+</li>
+<li><p>标识符<br>以字符、下划线（_）和美元符（$）开头。</p>
+</li>
+<li><p>数字<br>无整数类型，1和1.0的值相等。<br>Infinity表示所有大于1.79769313486231570e+308的值。</p>
+</li>
+<li><p>字符串<br>字符串是不可变的。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">‘c’ + <span class="string">'a'</span> + <span class="string">'t'</span> === <span class="string">'cat'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>语句<br>1.下面的值被当作<em>假</em>：</p>
+<blockquote>
+<ul>
+<li>false</li>
+<li>null</li>
+<li>undefined</li>
+<li>空字符串’ ‘ </li>
+<li>数字 0</li>
+<li>数字 NaN</li>
+</ul>
+</blockquote>
+<p>其他所有值都被当作真。</p>
+<p>2.for in<br>检测是否来自对象成员，或是原型链：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">for</span> (myvar in obj) &#123;</div><div class="line">  <span class="selector-tag">if</span> (obj.hasOwnProperty(myvar))&#123;</div><div class="line">    ···</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>表达式<br>typeof 运算符产生的值有’number’、’string’、’boolean’、’undefined’、’function’和’object’</p>
+</li>
+<li>字面量</li>
+<li>函数</li>
+</ul>
+<p>###第三章 对象</p>
+<ul>
+<li>对象字面量</li>
+<li>检索</li>
+<li>更新</li>
+<li>引用<br>对象通过引用来传递。它们永远不会被复制。</li>
+<li>原型<br>如果尝试去获取对象的某个属性值，但该对象没有此属性名，那么js会试着从原型对象中获取属性值，直到object.prototype。这个过程叫委托。</li>
+<li>反射</li>
+<li>枚举<br>通过for 而不是for in ,不用担心可能发掘出原型链中的属性。</li>
+<li>删除<br>删除对象的属性可能会让来自原型链中的属性透视出来。</li>
+<li>减少全局变量污染<br>只创建一个唯一的全局变量。<pre><code>var MYAPP = {};
+</code></pre></li>
+</ul>
+<p>###第四章 函数</p>
+<ul>
+<li>函数对象<br>js中函数就是对象。函数对象连接到Function.prototype。函数可以拥有方法。</li>
+<li>函数字面量</li>
+<li>调用</li>
+<li>方法调用模式<br>当一个函数被保存为对象的一个属性时，我们称它为一个方法。方法可以使用this访问自己所属的对象，所以它能从对象中取值或对对象进行修改，这种方法称为公共方法。</li>
+<li>函数调用模式<br>当一个函数并非一个对象的属性时，它就是被当作一个函数来使用的，this被绑定到全局对象。</li>
+<li>构造器调用模式<br>一个函数如果创建的目的就是希望结合new前缀来调用的，那么它被称为构造器函数。按照约定，以大写格式命名。</li>
+<li>Apply调用模式<br>apply方法让我们构建一个参数数组传递给调用函数，也允许指定this的值。</li>
+<li>参数<br>arguments并不是一个真正的数组，是个拥有length属性的array-like对象，没有任何数组方法。</li>
+<li>返回<br>一个函数总是会返回一个值。如果没有指定返回值，则返回undefined。</li>
+<li>异常<br>一个try语句只会有一个捕获所有异常的catch代码块。</li>
+<li>扩充类型的功能<br>通过给Function.prototype增加一个method方法，下次给对象增加方法时就不必输入prototype。<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span></span>.method = <span class="function"><span class="keyword">function</span></span> (<span class="keyword">name</span>, func) &#123;</div><div class="line">  this.prototype[<span class="keyword">name</span>] = func;</div><div class="line">  <span class="keyword">return</span> this;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>取整方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Number</span>.method(<span class="string">'integer'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>[<span class="keyword">this</span> &lt; <span class="number">0</span> ? <span class="string">'cell'</span> : <span class="string">'floor'</span>] (<span class="keyword">this</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>移除字符串首尾空白<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">String</span>.method(<span class="string">'trim'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/^\s+|\s+$/g</span>. <span class="string">''</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<ul>
+<li>递归</li>
+<li>作用域<br>最好在函数体的顶部声明函数中的可能用到的所有变量。</li>
+<li><p>闭包<br>避免在循环中创建函数。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var add_the_handlers = <span class="function"><span class="keyword">function</span> <span class="params">(node)</span> &#123;</span></div><div class="line">  var helper = <span class="function"><span class="keyword">function</span> <span class="params">(i)</span> &#123;</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> &#123;</span></div><div class="line">      alert(<span class="built_in">i</span>);</div><div class="line">    &#125;; </div><div class="line">  &#125;;</div><div class="line">  var <span class="built_in">i</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; node.<span class="built_in">length</span>; <span class="built_in">i</span> += <span class="number">1</span>) &#123;</div><div class="line">    nodes[i].onclick = helper(i);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>回调</p>
+</li>
+<li><p>模块<br>模块是一个提供接口却隐藏状态与实现的函数或对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> serial_maker  = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> prefix = <span class="string">''</span>;</div><div class="line">  <span class="keyword">var</span> seq = <span class="number">0</span>;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    set_prefix: <span class="function"><span class="keyword">function</span> (<span class="params">p</span>) </span>&#123;</div><div class="line">      prefix = <span class="built_in">String</span>(p);</div><div class="line">    &#125;,</div><div class="line">    set_seq: <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</div><div class="line">      seq = s;</div><div class="line">    &#125;,</div><div class="line">    gensym: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> result = prefix + seq;</div><div class="line">      seq += <span class="number">1</span>;</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> seqer = serial_maker();</div><div class="line">seqer.set_prefix(<span class="string">'Q'</span>);</div><div class="line">seqer.set_seq(<span class="number">1000</span>);</div><div class="line"><span class="keyword">var</span> unique = seqer.gensym();  <span class="comment">//Q1000</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>级联<br>如果让方法返回this就可以使用级联。</p>
+</li>
+<li><p>柯里化<br>柯里化允许我们把函数与传递给它的参数相结合，产成一个新的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add1 = add.curry(<span class="number">1</span>);</div><div class="line">add1(<span class="number">6</span>);  <span class="comment">//7</span></div><div class="line"></div><div class="line"><span class="built_in">Function</span>.method(<span class="string">'curry'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice,</div><div class="line">      args = slice.apply(<span class="built_in">arguments</span>),</div><div class="line">      that = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> that.apply(<span class="literal">null</span>, args.concat(slice.apply(<span class="built_in">arguments</span>)));</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>记忆<br>函数可以将先前的操作结果记录在某个对象里，从而避免无谓的重复计算。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> memoizer = <span class="function"><span class="keyword">function</span> <span class="params">(memo, formula)</span> </span>&#123;</div><div class="line">  <span class="keyword">var</span> recur = <span class="function"><span class="keyword">function</span> <span class="params">(n)</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = memo[n];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> result !== <span class="string">'number'</span>) &#123;</div><div class="line">      result = formula(recur, n);</div><div class="line">      memo[n] = result;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> recur;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> fibonacci = memoizer([<span class="number">0</span>, <span class="number">1</span>],<span class="function"><span class="keyword">function</span> <span class="params">(recur, n)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> recur (n - <span class="number">1</span>) + recur (n - <span class="number">2</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> factorial = memoizer([<span class="number">1</span>,<span class="number">1</span>], <span class="function"><span class="keyword">function</span> <span class="params">(recur, n)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * recur (n - <span class="number">1</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/08/11/gulp-env/" itemprop="url">
+                  gulp 环境问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T08:47:47+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/08/11/gulp-env/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/gulp-env/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>更新一下，原来是自己挖的坑….<br>node版本要更新到最新版就不会有下面的事情发生，node-sass的问题看现象很有可能是这些二进制文件使用了 GitHub 的 lfs 服务，而 lfs 使用的是亚马逊云，由于网络原因，这些服务器无法访问。<br>我比较懒，直接用的淘宝cnpm安装node-sass。</p>
+<hr>
+<p>我是选择用yoemen上的webapp generator来上手gulp的，具体步骤如下：</p>
+<ul>
+<li>安装yo <code>npm install -g yo</code></li>
+<li>安装webapp generator <code>npm install-g generator-webapp</code></li>
+<li>创建webapp项目my-webapp  <code>yo webapp my-webapp</code></li>
+</ul>
+<p>至此都是一帆风顺，没有问题。那我们来跑一下 <code>gulp serve</code> 试试，看看这个工程到底长什么样子。<br>糟糕，一运行就报错了</p>
+<blockquote>
+<p>SyntaxError: Unexpected token )    at exports.runInThisContext (vm.js:73:16)    at Module._compile (module.js:443:25)    at Object.Module._extensions..js (module.js:478:10)    at Module.load (module.js:355:32)    at Function.Module._load (module.js:310:12)    at Module.require (module.js:365:17)    at require (module.js:384:17)    at execute (/usr/local/lib/node_modules/gulp-cli/lib/versioned/^3.7.0/index.js:24:18)    at Liftoff.handleArguments (/usr/local/lib/node_modules/gulp-cli/index.js:149:63)    at Liftoff.(/usr/local/lib/node_modules/gulp-cli/node_modules/liftoff/index.js:193:16)</p>
+</blockquote>
+<p>仔细一看原来是gulpfile里的使用了ES6语法，这个问题纠结我一会儿。我们要装的转译ES6的Babel还要靠gulp来载入呢，那gulpfile里的ES6转义特么谁来做？还好gulp在3.9版本起就支持ES6了，用法也简单，只要把gulpfile.js 重命名为 gulpfile.babel.js 即可。</p>
+<ul>
+<li>重命名gulpfile <code>mv gulpfile.js gulpfile.babel.js</code></li>
+</ul>
+<p>那接着我们继续，还是我们的 `gulp serve。非guo常bu意qi外ran，报错了，这次是node-sass：</p>
+<blockquote>
+<p>Error: dlopen(node_modules/gulp-sass/node_modules/node-sass/vendor/darwin-x64-46/binding.node, 1): no suitable image found. Did find:<br>node_modules/gulp-sass/node_modules/node-sass/vendor/darwin-x64-46/binding.node: truncated mach-o error: segment __TEXT extends to 1167360 which is past end of file 121404<br>at Error (native)<br>at Object.Module._extensions..node (module.js:460:18)<br>at Module.load (module.js:356:32)<br>at Function.Module._load (module.js:311:12)<br>at Module.require (module.js:366:17)<br>at require (module.js:385:17)<br>at Object. (/node_modules/gulp-sass/node_modules/node-sass/lib/index.js:16:15)<br>at Module._compile (module.js:435:26)<br>at Object.Module._extensions..js (module.js:442:10)<br>at Module.load (module.js:356:32) </p>
+</blockquote>
+<p>google半天都是说重装node-sass，甚至是找到下载这个包然后去对应的目录下替换，然而都没什么卵用（反正我这是不行）。<br>我的办法要是指定node-sass的安装版本为2.0.1：</p>
+<ul>
+<li>安装node-sass <code>npm install node-sass@2.0.1</code></li>
+</ul>
+<p>安装成功后我们再试一下 <code>gulp serve</code>, 这下好了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/08/11/change-github-user/" itemprop="url">
+                  git 用户替换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T08:43:21+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/08/11/change-github-user/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/change-github-user/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近换了个新的github账号，暂且说是账号B吧。<br>提交的时候发现出现错误: remote: Permission to user_B/xxx.git denied to user_A<br>使用git config, git log 查看用户名都是账号B呀，真想摔键盘。</p>
+<p>github上的<a href="https://help.github.com/articles/error-permission-to-user-repo-denied-to-other-user/" target="_blank" rel="external">解决方法</a>不适合，因为该项目是B创建的，并不属于A 。</p>
+<p>那就删掉ssh-key重来, 照<a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">方法</a>重新创建，还是一样的错误.</p>
+<p>最后尝试<a href="https://help.github.com/articles/changing-a-remote-s-url/" target="_blank" rel="external">将https 换成 git</a></p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="string">origin </span><span class="string">git@</span><span class="string">github/</span>...</div></pre></td></tr></table></figure>
+<p>总算正确提交了…</p>
+<p>参考资料：<a href="http://www.cnblogs.com/shadow21/p/4246863.html" target="_blank" rel="external">http://www.cnblogs.com/shadow21/p/4246863.html</a></p>
 
           
         
@@ -479,7 +1044,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -489,7 +1054,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -1,0 +1,766 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="###第二章 语法
+
+空白多行注释的字符可能会出现在正则表达式里，不太安全，例如：
+123\*var rm_a = /a*/.match(a);*/
+
+标识符以字符、下划线（_）和美元符（$）开头。
+
+数字无整数类型，1和1.0的值相等。Infinity表示所有大于1.79769313486231570e+308的值。
+
+字符串字符串是不可变的。
+1‘c’ + &apos;a&apos; + &apos;t&apos; === &apos;cat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript语言精髓学习笔记">
+<meta property="og:url" content="https://jiyifun.github.io/2016/08/11/learn-js-to-good-part/index.html">
+<meta property="og:site_name" content="几一的博客">
+<meta property="og:description" content="###第二章 语法
+
+空白多行注释的字符可能会出现在正则表达式里，不太安全，例如：
+123\*var rm_a = /a*/.match(a);*/
+
+标识符以字符、下划线（_）和美元符（$）开头。
+
+数字无整数类型，1和1.0的值相等。Infinity表示所有大于1.79769313486231570e+308的值。
+
+字符串字符串是不可变的。
+1‘c’ + &apos;a&apos; + &apos;t&apos; === &apos;cat">
+<meta property="og:updated_time" content="2016-08-11T01:01:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript语言精髓学习笔记">
+<meta name="twitter:description" content="###第二章 语法
+
+空白多行注释的字符可能会出现在正则表达式里，不太安全，例如：
+123\*var rm_a = /a*/.match(a);*/
+
+标识符以字符、下划线（_）和美元符（$）开头。
+
+数字无整数类型，1和1.0的值相等。Infinity表示所有大于1.79769313486231570e+308的值。
+
+字符串字符串是不可变的。
+1‘c’ + &apos;a&apos; + &apos;t&apos; === &apos;cat">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://jiyifun.github.io/2016/08/11/learn-js-to-good-part/"/>
+
+  <title> JavaScript语言精髓学习笔记 | 几一的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f9944d2d97e1250e56b63bee883630ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">几一的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">cook & code</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript语言精髓学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T08:52:30+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/08/11/learn-js-to-good-part/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/learn-js-to-good-part/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###第二章 语法</p>
+<ul>
+<li><p>空白<br>多行注释的字符可能会出现在正则表达式里，不太安全，例如：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">\*</span></div><div class="line"><span class="keyword">var</span> rm_a = <span class="regexp">/a*/</span>.match(a);</div><div class="line">*/</div></pre></td></tr></table></figure>
+</li>
+<li><p>标识符<br>以字符、下划线（_）和美元符（$）开头。</p>
+</li>
+<li><p>数字<br>无整数类型，1和1.0的值相等。<br>Infinity表示所有大于1.79769313486231570e+308的值。</p>
+</li>
+<li><p>字符串<br>字符串是不可变的。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">‘c’ + <span class="string">'a'</span> + <span class="string">'t'</span> === <span class="string">'cat'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>语句<br>1.下面的值被当作<em>假</em>：</p>
+<blockquote>
+<ul>
+<li>false</li>
+<li>null</li>
+<li>undefined</li>
+<li>空字符串’ ‘ </li>
+<li>数字 0</li>
+<li>数字 NaN</li>
+</ul>
+</blockquote>
+<p>其他所有值都被当作真。</p>
+<p>2.for in<br>检测是否来自对象成员，或是原型链：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">for</span> (myvar in obj) &#123;</div><div class="line">  <span class="selector-tag">if</span> (obj.hasOwnProperty(myvar))&#123;</div><div class="line">    ···</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>表达式<br>typeof 运算符产生的值有’number’、’string’、’boolean’、’undefined’、’function’和’object’</p>
+</li>
+<li>字面量</li>
+<li>函数</li>
+</ul>
+<p>###第三章 对象</p>
+<ul>
+<li>对象字面量</li>
+<li>检索</li>
+<li>更新</li>
+<li>引用<br>对象通过引用来传递。它们永远不会被复制。</li>
+<li>原型<br>如果尝试去获取对象的某个属性值，但该对象没有此属性名，那么js会试着从原型对象中获取属性值，直到object.prototype。这个过程叫委托。</li>
+<li>反射</li>
+<li>枚举<br>通过for 而不是for in ,不用担心可能发掘出原型链中的属性。</li>
+<li>删除<br>删除对象的属性可能会让来自原型链中的属性透视出来。</li>
+<li>减少全局变量污染<br>只创建一个唯一的全局变量。<pre><code>var MYAPP = {};
+</code></pre></li>
+</ul>
+<p>###第四章 函数</p>
+<ul>
+<li>函数对象<br>js中函数就是对象。函数对象连接到Function.prototype。函数可以拥有方法。</li>
+<li>函数字面量</li>
+<li>调用</li>
+<li>方法调用模式<br>当一个函数被保存为对象的一个属性时，我们称它为一个方法。方法可以使用this访问自己所属的对象，所以它能从对象中取值或对对象进行修改，这种方法称为公共方法。</li>
+<li>函数调用模式<br>当一个函数并非一个对象的属性时，它就是被当作一个函数来使用的，this被绑定到全局对象。</li>
+<li>构造器调用模式<br>一个函数如果创建的目的就是希望结合new前缀来调用的，那么它被称为构造器函数。按照约定，以大写格式命名。</li>
+<li>Apply调用模式<br>apply方法让我们构建一个参数数组传递给调用函数，也允许指定this的值。</li>
+<li>参数<br>arguments并不是一个真正的数组，是个拥有length属性的array-like对象，没有任何数组方法。</li>
+<li>返回<br>一个函数总是会返回一个值。如果没有指定返回值，则返回undefined。</li>
+<li>异常<br>一个try语句只会有一个捕获所有异常的catch代码块。</li>
+<li>扩充类型的功能<br>通过给Function.prototype增加一个method方法，下次给对象增加方法时就不必输入prototype。<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span></span>.method = <span class="function"><span class="keyword">function</span></span> (<span class="keyword">name</span>, func) &#123;</div><div class="line">  this.prototype[<span class="keyword">name</span>] = func;</div><div class="line">  <span class="keyword">return</span> this;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>取整方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Number</span>.method(<span class="string">'integer'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>[<span class="keyword">this</span> &lt; <span class="number">0</span> ? <span class="string">'cell'</span> : <span class="string">'floor'</span>] (<span class="keyword">this</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>移除字符串首尾空白<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">String</span>.method(<span class="string">'trim'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/^\s+|\s+$/g</span>. <span class="string">''</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<ul>
+<li>递归</li>
+<li>作用域<br>最好在函数体的顶部声明函数中的可能用到的所有变量。</li>
+<li><p>闭包<br>避免在循环中创建函数。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var add_the_handlers = <span class="function"><span class="keyword">function</span> <span class="params">(node)</span> &#123;</span></div><div class="line">  var helper = <span class="function"><span class="keyword">function</span> <span class="params">(i)</span> &#123;</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> &#123;</span></div><div class="line">      alert(<span class="built_in">i</span>);</div><div class="line">    &#125;; </div><div class="line">  &#125;;</div><div class="line">  var <span class="built_in">i</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; node.<span class="built_in">length</span>; <span class="built_in">i</span> += <span class="number">1</span>) &#123;</div><div class="line">    nodes[i].onclick = helper(i);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>回调</p>
+</li>
+<li><p>模块<br>模块是一个提供接口却隐藏状态与实现的函数或对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> serial_maker  = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> prefix = <span class="string">''</span>;</div><div class="line">  <span class="keyword">var</span> seq = <span class="number">0</span>;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    set_prefix: <span class="function"><span class="keyword">function</span> (<span class="params">p</span>) </span>&#123;</div><div class="line">      prefix = <span class="built_in">String</span>(p);</div><div class="line">    &#125;,</div><div class="line">    set_seq: <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</div><div class="line">      seq = s;</div><div class="line">    &#125;,</div><div class="line">    gensym: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> result = prefix + seq;</div><div class="line">      seq += <span class="number">1</span>;</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> seqer = serial_maker();</div><div class="line">seqer.set_prefix(<span class="string">'Q'</span>);</div><div class="line">seqer.set_seq(<span class="number">1000</span>);</div><div class="line"><span class="keyword">var</span> unique = seqer.gensym();  <span class="comment">//Q1000</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>级联<br>如果让方法返回this就可以使用级联。</p>
+</li>
+<li><p>柯里化<br>柯里化允许我们把函数与传递给它的参数相结合，产成一个新的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add1 = add.curry(<span class="number">1</span>);</div><div class="line">add1(<span class="number">6</span>);  <span class="comment">//7</span></div><div class="line"></div><div class="line"><span class="built_in">Function</span>.method(<span class="string">'curry'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice,</div><div class="line">      args = slice.apply(<span class="built_in">arguments</span>),</div><div class="line">      that = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> that.apply(<span class="literal">null</span>, args.concat(slice.apply(<span class="built_in">arguments</span>)));</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>记忆<br>函数可以将先前的操作结果记录在某个对象里，从而避免无谓的重复计算。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> memoizer = <span class="function"><span class="keyword">function</span> <span class="params">(memo, formula)</span> </span>&#123;</div><div class="line">  <span class="keyword">var</span> recur = <span class="function"><span class="keyword">function</span> <span class="params">(n)</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = memo[n];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> result !== <span class="string">'number'</span>) &#123;</div><div class="line">      result = formula(recur, n);</div><div class="line">      memo[n] = result;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> recur;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> fibonacci = memoizer([<span class="number">0</span>, <span class="number">1</span>],<span class="function"><span class="keyword">function</span> <span class="params">(recur, n)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> recur (n - <span class="number">1</span>) + recur (n - <span class="number">2</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> factorial = memoizer([<span class="number">1</span>,<span class="number">1</span>], <span class="function"><span class="keyword">function</span> <span class="params">(recur, n)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * recur (n - <span class="number">1</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/笔记/" rel="tag">#笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/08/11/gulp-env/" rel="next" title="gulp 环境问题">
+                <i class="fa fa-chevron-left"></i> gulp 环境问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/08/11/learn-js-the-good-parts-2/" rel="prev" title="JavaScript语言精髓学习笔记2">
+                JavaScript语言精髓学习笔记2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/11/learn-js-to-good-part/"
+           data-title="JavaScript语言精髓学习笔记" data-url="https://jiyifun.github.io/blog/2016/08/11/learn-js-to-good-part/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/avatar.png"
+               alt="jiyifun" />
+          <p class="site-author-name" itemprop="name">jiyifun</p>
+          <p class="site-description motion-element" itemprop="description">一枚前端的成长记录手册</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/jiyifun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiyifun</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">
+      本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  <script>
+  var birthDay = new Date("11/20/2014");
+  var now = new Date();
+  var duration = now.getTime() - birthDay.getTime();
+  var total= Math.floor(duration / (1000 * 60 * 60 * 24));
+  document.getElementById("showDays").innerHTML = "本站已运行 "+total+" 天";
+  </script>
+  <span id="showDays"></span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jiyifun"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/blog/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/blog/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>
